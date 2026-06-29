@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <fieldset>
+        <legend id="legend">Enter Data</legend>
+        <input id="data" type="text">
+        <button onclick="store()">Store Data</button>
+        <button onclick="recall()">Recall Data</button>
+        <button onclick="remove()">Reset</button>
+    </fieldset>
+    <script>
+        function store(){
+            let data = document.getElementById('data').value
+            if(data===""){return false}
+            else{
+                localStorage.setItem('js_data',data)
+                document.getElementById('data').value=''
+                document.getElementById('legend').innerText = 
+                localStorage.getItem('js_data') + 'is_stored'
+            }
+        }
+
+        function recall(){
+            if(localStorage.getItem('js_data')===null){
+                document.getElementById('legend').innerText = 'Enter Data'
+                return false
+            }
+            else{
+                document.getElementById('data').value = ''
+                document.getElementById('legend').innerText = 'Stored data' + localStorage.getItem('js_data')
+            }
+        }
+
+        function remove(){
+            if(localStorage.getItem('js_data')===null){
+                document.getElementById('legend').innerText = 'Enter Data'
+                return false
+            }
+            else{
+                document.getElementById('legend').innerText = localStorage.getItem('js_data') + 'Is removed'
+                localStorage.remove('js_data')
+                document.getElementById('data').value=''
+            }
+        }
+    </script>
+</body>
+</html>

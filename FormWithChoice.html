@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="pizza" action="https://httpbin.org/post" method="post">
+        <fieldset>
+            <legend>Select pizza Topping</legend>
+            <input type="checkbox" name="Top" value="Cheese">Cheese
+            <input type="checkbox" name="Top" value="Ham">Ham
+            <input type="checkbox" name="Top" value="Peppers">Peppers
+        </fieldset>
+        <input type="submit">
+    </form>
+    <script>
+        (function(){
+            const form = document.getElementById('pizza')
+            form.addEventListener('submit',  function(event){reactTo(form, event)})
+            form.Top[0].checked = true
+        })()
+        function reactTo(form,event){
+            let i,ok,summary = ''
+            for(i = 0; i < form.Top.length; i++){
+                if(form.Top[i].checked){
+                    summary += form.Top[i].value +''
+                }
+            }
+        ok = confirm('Submit these choices?\n' + summary)
+        if(!ok){
+            event.preventDefault()
+        }
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Sender</h1>
+    <p id="host">Main Page Domain:</p>
+    <iframe id="cage" width="450" heigh="120"
+    src="http://127.0.0.1:5500/sixthh.html"></iframe>
+    <button onclick="sendMsg()">Send Message</button>
+    <script>
+        document.getElementById('host').innerHTML += document.domain
+        function sendMsg(){
+            const cage = document.getElementById('cage').contentWindow
+            cage.postMessage('Message received from:'+ document.domain,'http://127.0.0.1:5500')
+        }
+    </script>
+</body>
+</html>
